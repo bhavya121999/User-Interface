@@ -1,31 +1,23 @@
-$(".nav ul li").click(function () {
-    $(this).addClass("active").siblings().removeClass("active");
-});
+// Gallery carousel (uses the Owl Carousel library)
+$(".gallery-carousel").owlCarousel({
+    autoplay: true,
+    dots: true,
+    loop: true,
+    center: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      768: {
+        items: 3
+      },
+      992: {
+        items: 4
+      },
+      1200: {
+        items: 5
+      }
+    }
 
-const tabBtn = document.querySelectorAll(".nav ul li");
-const tab = document.querySelectorAll(".tab");
+  });
 
-function tabs(panelIndex) {
-    tab.forEach(function (node) {
-        node.style.display = "none";
-    });
-    tab[panelIndex].style.display = "block";
-}
-tabs(0);
-
-let bio = document.querySelector(".bio");
-
-function bioText() {
-    bio.oldText = bio.innerText;
-    bio.innerText = bio.innerText.substring(0, 100) + "...";
-    bio.innerHTML +=
-        "&nbsp;" + `<span onclick='addLength()' id='see-more-bio'>See More</span>`;
-}
-
-bioText();
-
-function addLength() {
-    bio.innerHTML = bio.oldText;
-    bio.innerHTML +=
-        "&nbsp;" + `<span onclick='bioText()' id='see-less-bio'>See Less</span>`;
-}
